@@ -1,0 +1,126 @@
+.container-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  row-gap: 0;
+  margin-bottom: 30px;
+}
+
+.registrar-denuncia {
+  margin-bottom: 40px;
+}
+
+.registrar-denuncia h1 {
+  margin-bottom: 20px;
+}
+
+.container-form select {
+  color: var(--black2);
+}
+
+.container-form label {
+  display: block;
+  margin-bottom: 4px;
+  margin-top: 20px;
+}
+
+.container-form textarea {
+  width: 100%;
+  height: 312px;
+}
+
+.container-form input {
+  height: 44px;
+}
+
+.container-form input,
+.container-form textarea {
+  padding: 10px;
+  font: 500 0.875rem/1 "Inter", sans-serif;
+  width: 100%;
+  border-radius: 8px;
+  color: var(--black2);
+  border: 1px solid var(--blueC);
+  line-height: 1.5;
+}
+
+.container-form select {
+  width: 100%;
+  padding: 10px;
+  background-color: transparent;
+  border: 1px solid var(--blueC);
+  border-radius: 8px;
+}
+
+.container-form input:focus,
+.container-form select:focus,
+.container-form textarea:focus {
+  outline: 1px solid var(--blueD);
+}
+
+.container-form input::placeholder,
+.container-form textarea::placeholder {
+  color: var(--gray);
+}
+
+.container-form label:first-child {
+  margin-top: 0;
+}
+
+.arquivo h2 {
+  width: 20ch;
+  margin-bottom: 20px;
+}
+
+.arquivo input[type="file"] {
+  display: none;
+}
+
+.arquivo label[for="anexo"] {
+  display: block;
+  background-color: var(--blueC);
+  padding: 10px;
+  border-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.arquivo input[type="submit"] {
+  background-color: var(--green);
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 4px;
+  width: 100%;
+}
+
+.arquivo span {
+  display: inline-block;
+  font-size: 0.875rem;
+  margin-top: 5px;
+  color: var(--gray);
+}
+
+.arquivo > div {
+  display: grid;
+  grid-template-columns: 3fr 6fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.erro {
+  display: none;
+  margin-top: 4px;
+  font-size: 14px;
+}
+
+.erro.ativo {
+  display: inline-block;
+}
+
+.cancelar-denuncia {
+  position: absolute;
+  left: 80%;
+  top: 5%;
+}

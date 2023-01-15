@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Listar Usuários</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Rubik:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+
+
+<body>
+
+  <header class="header-bg">
+    <a href="./">
+      <h2 class="white i-B42">DenunciaPE</h2>
+    </a>
+    <nav class="header-menu">
+      <ul>
+      	<li>
+      	  <a th:if="${session.usuarioLogado}" th:href="@{/editarPerfil(id_usuario=${session.usuarioLogado.id_usuario})}">
+      	  <img src="./img/Person.svg" alt="decoração" />
+          <p th:if="${session.usuarioLogado}" th:text="${session.usuarioLogado.nome}" class="white r-R20"></p>
+          </a>
+        </li>
+        <li>
+          <a class="white r-R20" href="./denunciar"><img src="./img/Information-circle.svg" alt="decoração" />Registrar Denúncias</a>
+        </li>
+        <li>
+          <a class="white r-R20" href="./denuncias"><img src="./img/Flag.svg" alt="decoração" />Visualizar
+            Denúncias</a>
+        </li>
+        <li th:if="${session.usuarioLogado}">
+        	<a th:if="${session.usuarioLogado.isAdm}" href="./listaUsuario"><img src="./img/Person.svg" alt="decoração" />
+        	<p class="white r-R20">Listar Usuários</p></a>
+        </li>
+        <li>
+          <a th:if="${session.usuarioLogado}" class="white r-R20" href="./minhasDenuncias"><img src="./img/Flag.svg" alt="decoração" />Minhas Denúncias</a>
+        </li>
+        <li>
+          <a class="white r-R20" href="/acom"><img src="./img/Calendar.svg" alt="decoração" />Acompanhamento</a>
+        </li>
+        <li>
+        	<a th:if="${session.usuarioLogado == null}" class="white r-R20" href="./usuario"><img src="./img/Person.svg" alt="decoração" />Login e Cadastro</a>
+		</li>
+        <li>
+          <a class="white r-R20" id="contato" href="/"><img src="./img/Email.svg" alt="decoração" />Contato</a>
+        </li>
+        <li>
+        	<form th:action="@{/logout}" method="POST">
+        	<button class="logout" th:if="${session.usuarioLogado}">Sair</button>
+        	</form>
+        </li>
+      </ul>
+    </nav>
+  </header>
+     <div th:if="${session.usuarioLogado}">
+     	<section th:if="${session.usuarioLogado.isAdm}" class="margin">
+     		<h2 class="i-B42 black1">Lista de Usuários</h2>
+     			<p th:if="${deletado != null}" class="i-M18 green"><b><br>Usuário deletado com sucesso.</b><p>
+     			<p th:if="${erro != null}" class="i-M18 red"><b><br>Usuário não pode ser deletado, pois tem permissão de administrador.</b></p>
+     	</section><br>
+		<table id="tabela-usuarios">
+			<tr>
+				<th>Nome</th>
+				<th>Sobrenome</th>
+				<th>Telefone</th>
+				<th>Cpf</th>
+				<th>E-mail</th>
+				<th>Ações</th>
+			</tr>
+			<tr th:each="cont : ${lista}">
+				<td th:text="${cont.nome}"></td>
+				<td th:text="${cont.sobrenome}"></td>
+				<td th:text="${cont.telefone}"></td>
+				<td th:text="${cont.cpf}"></td>				
+				<td th:text="${cont.email}">
+				  <td><a class="red i-B16 like" th:href="@{/removerUsuario(id_usuario=${cont.id_usuario})}">Remover</a>
+				      
+				  </td>
+				
+			</tr>
+		</table>
+		
+	</div>
+	
+	
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projeto e Prática</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Rubik:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+
+<body>
+  <header class="header-bg">
+    <a href="./">
+      <h1 class="white i-B42">LOGO</h1>
+    </a>
+    <nav class="header-menu" th:object="${usuario}">
+      <ul>
+        <li>
+          <a class="white r-R20" href="./denunciar"><img src="./img/Information-circle.svg" alt="decoração" />Registrar Denúncias</a>
+        </li>
+        <li>
+          <a class="white r-R20" href="./denuncias"><img src="./img/Flag.svg" alt="decoração" />Visualizar
+            Denúncias</a>
+        </li>
+        <li>
+          <a class="white r-R20" href="/acom"><img src="./img/Calendar.svg" alt="decoração" />Acompanhamento</a>
+        </li>
+        <li>
+          <a class="white r-R20" href="./usuario"><img src="./img/Person.svg" alt="decoração" />Login e Cadastro</a>
+        </li>
+        <li>
+          <a class="white r-R20" id="contato" href="/"><img src="./img/Email.svg" alt="decoração" />Contato</a>
+        </li>
+         <li>
+          <p class="white user r-R20" th:if="${session.usuarioLogado}" th:text="${session.usuarioLogado.nome + ' ' + session.usuarioLogado.sobrenome}"></p>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <section class="margin home">
+    <ul>
+      <li>
+        <a href="">
+          <div class="img"></div>
+          <span class="i-B20 black1">SANEAMENTO</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="">
+          <div class="img"></div>
+          <span class="i-B20 black1">ILUMINAÇÃO PÚBLICA</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="">
+          <div class="img"></div>
+          <span class="i-B20 black1">SERVIDOR</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="">
+          <div class="img"></div>
+          <span class="i-B20 black1">OBRAS</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="">
+          <div class="img"></div>
+          <span class="i-B20 black1">TRANSPORTE</span>
+        </a>
+      </li>
+
+      <li>
+        <a href="">
+          <div class="img"></div>
+          <span class="i-B20 black1">INFRAESTRUTURA</span>
+        </a>
+      </li>
+    </ul>
+  </section>
+  <div class="contato contato-bg">
+    <div class="contato-modal">
+      <div class="close">
+        <p class="i-M18 black1">
+          Para dúvidas, sugestões e reclamações entre em contato com uma das
+          opções abaixo.
+        </p>
+        <img src="./img/Close.svg" alt="botão de fechar" />
+      </div>
+      <div class="conteudo">
+        <div>
+          <span class="i-SM18 black1">E-mail</span>
+          <p class="i-R18 white">suporte@app.com</p>
+        </div>
+        <div>
+          <span class="i-SM18 black1">Telefone</span>
+          <p class="i-R18 white">(81) 91111-2222</p>
+        </div>
+        <div>
+          <span class="i-SM18 black1">Whatsapp</span>
+          <p class="i-R18 white">(81) 91111-2222</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="./js/script.js"></script>
+</body>
+
+</html>

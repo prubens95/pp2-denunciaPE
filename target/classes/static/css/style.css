@@ -1,0 +1,16 @@
+@import url('./geral/geral.css');
+
+/* componentes */
+@import url('./componentes/cores.css');
+@import url('./componentes/tipografia.css');
+
+/* pages */
+@import url('./seçoes/home.css');
+@import url('./seçoes/menu.css');
+@import url('./seçoes/contato.css');
+@import url('./seçoes/denunciar.css');
+@import url('./seçoes/denuncias.css');
+@import url('./seçoes/login.css');
+@import url('./seçoes/acompanhamento.css');
+@import url('./seçoes/protocolo.css');
+@import url('./seçoes/listausuarios.css');

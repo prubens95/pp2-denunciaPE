@@ -1,0 +1,93 @@
+.buscar input[type="submit"] {
+  display: block;
+  background-color: var(--blueD);
+  color: white;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.e56_822 {
+	width: 70%;
+	height: 100%;
+	margin-left:20%;
+	margin-top:5%;
+	position: absolute;
+}
+
+.e56_700 {
+	background-color: rgba(107.10000425577164, 183.81252229213715, 204.00000303983688, 1);
+	width: 80%;
+	height: 60%;
+	position: absolute;
+	right: 10%;
+	top:5%;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+}
+
+.e56_701 {
+	color: rgba(255, 255, 255, 1);
+	width: 70%;
+	height:100% ;
+	position: absolute;
+	right: 19%;
+	top: 15%;
+	font-family: Inter;
+	text-align: left;
+	font-size: 42px;
+	letter-spacing: 0;
+}
+
+.e56_709 {
+	background-color: rgba(255, 255, 255, 1);
+	width: 35%;
+	height: 7%;
+	position: absolute;
+	right:54%;
+	top: 55%;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+}
+
+.e56_709 {
+	border: 1px solid rgba(179.000004529953, 179.000004529953, 179.000004529953, 1);
+}
+
+
+
+.e56_705 {
+	background-color: rgba(67.00000360608101, 162.00000554323196, 187.00000405311584, 1);
+	color: rgba(255, 255, 255, 1);
+	width: 15%;
+	height: 5%;
+	position: absolute;
+	left: 19%;
+	top: 45%;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+}
+
+
+
+.e56_707 {
+	color: rgba(255, 255, 255, 1);
+	width: 5%;
+	height: 20%;
+	position: absolute;
+	left: 19%;
+	top: 35%;
+	font-family: Rubik;
+	text-align: left;
+	font-size: 18px;
+	letter-spacing: 0;
+}

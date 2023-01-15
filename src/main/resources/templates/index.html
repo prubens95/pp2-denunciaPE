@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="UTF-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DenunciaPE - Home</title>
+  <style>
+  	body {
+		background-image: url("./img/homepage2.jpg");
+	}
+  </style>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Rubik:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+ <header class="header-bg">
+    <a href="./">
+      <h2 class="white i-B42">DenunciaPE</h2>
+    </a>
+    <nav class="header-menu">
+      <ul>
+      	<li>
+      	  <a th:if="${session.usuarioLogado}" th:href="@{/editarPerfil(id_usuario=${session.usuarioLogado.id_usuario})}">
+      	  <img src="./img/Person.svg" alt="decoração" />
+          <p th:if="${session.usuarioLogado}" th:text="${session.usuarioLogado.nome}" class="white r-R20"></p>
+          </a>
+        </li>
+        <li>
+          <a class="white r-R20" href="./denunciar"><img src="./img/Information-circle.svg" alt="decoração" />Registrar Denúncias</a>
+        </li>
+        <li>
+          <a class="white r-R20" href="./denuncias"><img src="./img/Flag.svg" alt="decoração" />Visualizar
+            Denúncias</a>
+        </li>
+        <li th:if="${session.usuarioLogado}">
+        	<a th:if="${session.usuarioLogado.isAdm}" href="./listaUsuario"><img src="./img/Person.svg" alt="decoração" />
+        	<p class="white r-R20">Listar Usuários</p></a>
+        </li>
+        <li>
+          <a th:if="${session.usuarioLogado}" class="white r-R20" href="./minhasDenuncias"><img src="./img/Flag.svg" alt="decoração" />Minhas Denúncias</a>
+        </li>
+        <li>
+          <a class="white r-R20" href="/acom"><img src="./img/Calendar.svg" alt="decoração" />Acompanhamento</a>
+        </li>
+        <li>
+        	<a th:if="${session.usuarioLogado == null}" class="white r-R20" href="./usuario"><img src="./img/Person.svg" alt="decoração" />Login e Cadastro</a>
+		</li>
+        <li>
+          <a class="white r-R20" id="contato" href="/"><img src="./img/Email.svg" alt="decoração" />Contato</a>
+        </li>
+        <li>
+        	<form th:action="@{/logout}" method="POST">
+        	<button class="logout" th:if="${session.usuarioLogado}">Sair</button>
+        	</form>
+        </li>
+      </ul>
+    </nav>
+  </header>
+	
+		<h1 id="slogan" class="i-B42 white">Aqui <br>a sua voz <br>tem vez.</h1>
+		
+    
+
+<div class="contato contato-bg">
+    <div class="contato-modal">
+      <div class="close">
+        <p class="i-M18 black1">
+          Para dúvidas, sugestões e reclamações entre em contato com uma das
+          opções abaixo.
+        </p>
+        <img src="./img/Close.svg" alt="botão de fechar" />
+      </div>
+      <div class="conteudo">
+        <div>
+          <span class="i-SM18 black1">E-mail</span>
+          <p class="i-R18 white">suporte@app.com</p>
+        </div>
+        <div>
+          <span class="i-SM18 black1">Telefone</span>
+          <p class="i-R18 white">(81) 91111-2222</p>
+        </div>
+        <div>
+          <span class="i-SM18 black1">Whatsapp</span>
+          <p class="i-R18 white">(81) 91111-2222</p>
+        </div>
+      </div>
+    </div>
+</div>
+  <script type="module" src="./js/script.js"></script>
+
+
+
+
+</body>
+</html>

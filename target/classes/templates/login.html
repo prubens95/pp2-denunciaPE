@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"> 
+
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Entrar na conta</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Rubik:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./css/style.css" />
+</head>
+
+<body>
+    <div class="container">
+        <div class="login-bg">
+            <h4 class="r-B42 black1 login">Login</h4>
+
+            <form class="content" th:action="@{/auth}" method="post">
+
+                <a href="./usuario">
+                    <img src="./img/Close.svg" class="close" alt="fechar">
+                </a>
+                <label for="email" class="i-B16 black2">E-mail</label>
+                <input type="email" id="email" name="email" placeholder="Digite seu e-mail">
+                <label for="senha" class="i-B16 black2">Senha</label>
+                <input type="password" id="senha" name="senha" placeholder="Digite sua senha">
+                <i class="bi bi-eye-slash" id="togglePassword"></i>
+                <p class="r-R14 red" th:if="${naoAutorizado != null}" th:text="${naoAutorizado}"></p>
+                <div>
+                    <button class="i-B16 white">Entrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+		const togglePassword = document.querySelector("#togglePassword");
+        const senha = document.querySelector("#senha");
+
+        togglePassword.addEventListener("click", function () {
+           
+            const type = senha.getAttribute("type") === "password" ? "text" : "password";
+            senha.setAttribute("type", type);
+            
+        
+            this.classList.toggle("bi-eye");
+        });
+	</script>
+</body>
+
+</html>

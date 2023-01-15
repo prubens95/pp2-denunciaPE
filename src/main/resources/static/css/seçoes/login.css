@@ -1,0 +1,158 @@
+.container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #43a2bb;
+}
+
+.cadastro-bg {
+  background: #43a2bb;
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+form i {
+    margin-left: -30px;
+    cursor: pointer;
+}
+
+
+.es1 {
+  width: 670px;
+  border-radius: 8px;
+  background: #fff;
+  padding: 100px 0;
+}
+
+.es1 h4 {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.content {
+  width: 400px;
+  margin: 0 auto;
+}
+
+.es1 a {
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 40px;
+  border-radius: 8px;
+  text-transform: uppercase;
+}
+
+.es1 a:last-child {
+  margin-bottom: 0;
+}
+
+.de1 {
+  background-color: var(--blueC);
+}
+
+.login-bg {
+  padding: 100px;
+  background-color: var(--white);
+  border-radius: 8px;
+  position: relative;
+}
+
+.login-bg h4 {
+  margin-bottom: 40px;
+}
+
+.login-bg .content label {
+  display: block;
+  text-transform: uppercase;
+  padding-bottom: 4px;
+  margin-top: 20px;
+}
+
+.login-bg .content input {
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid var(--blueC);
+  height: 44px;
+  padding: 10px;
+  outline: none;
+}
+
+.login-bg .content input:focus {
+  outline: 1px solid var(--blueD);
+}
+
+.login-bg .content > div {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 20px;
+}
+
+.login-bg .content p {
+  order: 2;
+}
+
+.login-bg .content button {
+  padding: 10px 50px;
+  border: none;
+  background-color: var(--blueC);
+  border-radius: 8px;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+}
+
+.content .close,
+.cadastro form a {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+}
+
+.cadastro {
+  position: relative;
+  padding: 100px;
+  margin: 100px auto;
+}
+
+.cadastro h4 {
+  text-align: left;
+  padding: 0;
+  margin: 0;
+}
+
+.cadastro label {
+  display: block;
+  padding-bottom: 4px;
+  padding-top: 20px;
+}
+
+.cadastro input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--blueC);
+  border-radius: 8px;
+}
+
+.cadastro input:focus {
+  outline: 1px solid var(--blueD);
+}
+
+.logout {
+  padding: 20px;
+  text-align: center;
+  border-radius: 8px;
+  text-transform: uppercase;
+  width: 100%;
+  border: none;
+}
+
+.cadastro button {
+  padding: 10px 50px;
+  border: none;
+  background-color: var(--blueC);
+  border-radius: 8px;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  margin-top: 20px;
+}

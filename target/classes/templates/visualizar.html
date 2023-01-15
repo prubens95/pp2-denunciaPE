@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Visualizar Denúncias</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Rubik:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+
+<body>
+  <header class="header-bg">
+    <a href="./">
+      <h2 class="white i-B42">DenunciaPE</h2>
+    </a>
+    <nav class="header-menu">
+      <ul>
+      	 
+      	<li>
+      	    <a th:if="${session.usuarioLogado}" th:href="@{/editarPerfil(id_usuario=${session.usuarioLogado.id_usuario})}">
+      	    <img src="./img/Person.svg" alt="decoração" />
+          	<p th:if="${session.usuarioLogado}" th:text="${session.usuarioLogado.nome}" class="white r-R20"></p>
+          	</a>
+        </li>
+      	
+        <li>
+          <a class="white r-R20" href="./denunciar"><img src="./img/Information-circle.svg" alt="decoração" />Registrar Denúncias</a>
+        </li>
+        <li>
+          <a class="white r-R20" href="./denuncias"><img src="./img/Flag.svg" alt="decoração" />Visualizar Denúncias</a>
+        </li>
+        <li th:if="${session.usuarioLogado}">
+        	<a th:if="${session.usuarioLogado.isAdm}" href="./listaUsuario"><img src="./img/Person.svg" alt="decoração" />
+        	<p class="white r-R20">Listar Usuários</p></a>
+        </li>
+        <li>
+          <a th:if="${session.usuarioLogado}" class="white r-R20" href="./minhasDenuncias"><img src="./img/Flag.svg" alt="decoração" />Minhas Denúncias</a>
+        </li>
+        <li>
+          <a class="white r-R20" href="/acom"><img src="./img/Calendar.svg" alt="decoração" />Acompanhamento</a>
+        </li>
+        <li>
+          <a th:if="${session.usuarioLogado == null}" class="white r-R20" href="./usuario"><img src="./img/Person.svg" alt="decoração" />Login e Cadastro</a>
+		</li>
+        <li>
+          <a class="white r-R20" id="contato" href="/"><img src="./img/Email.svg" alt="decoração" />Contato</a>
+        </li>
+        <li>
+        	<form th:action="@{/logout}" method="POST">
+        	<button class="logout" th:if="${session.usuarioLogado}">Sair</button>
+        	</form>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <section class="margin denuncias">
+    <div class="denuncias-conteudo">
+    <h2 class="i-B42 black1">Visualizar Denúncias</h2><br><br>
+      <div class="denuncias" th:each="denuncia : ${denuncias}">
+      <div th:if="${denuncia.anexos != null}">
+      	<img height="200px" width="200px" class="img_denuncia" alt="imagem" th:src="|/anexos/${denuncia.id_denuncia}|"/>
+      </div>
+      <div th:if="${denuncia.anexos == null}">
+      	<img src="https://i.pinimg.com/550x/52/f5/12/52f512f99b64f3c5d2ec9441cd7a3fd6.jpg" height="200px" width="200px" alt="imagem demonstrando a denuncia"/>
+      </div>
+        <div class="denuncias-descricao">
+        <div class="denuncias-status">
+        	<span class="blueD categ i-B16" th:text="${denuncia.categoria.nome}">CATEGORIA AQUI</span>
+        </div>	
+        <div class="descricao">
+            <h2 class="black1 i-B20" th:text="${denuncia.assunto}"></h2>
+            <p class="i-R18 black1" th:text="${denuncia.descricao}"></p>
+          </div>
+          <div class="denuncias-status">
+        	<div class="denuncias-bairro">
+        		<b>Bairro:</b>
+      			<p class="bairro" th:text="${denuncia.endereco.bairro}"></p>
+      		</div>
+      		<div class="denuncias-bairro">
+      			<b>Rua:</b>
+      			<p class="bairro" th:text="${denuncia.endereco.rua}"></p>
+      		</div>
+      	</div>
+          <div class="denuncias-status">
+          	<div th:if="${denuncia.status == true}" class="denuncias-status-true">
+          		<p th:if="${denuncia.status == true}" class="i-B16 green">STATUS: CONCLUÍDO</p>
+          	</div>
+          	<div th:if="${denuncia.status == false}" class="denuncias-status-false">
+          		<p th:if="${denuncia.status == false}" class="i-B16 yellow">STATUS: EM ANDAMENTO</p>
+          	</div>
+          	<div th:if="${session.usuarioLogado}">
+          		<a class="denuncias-edit" th:if="${session.usuarioLogado.isAdm}" th:href="@{/editarDenuncia(id_denuncia=${denuncia.id_denuncia})}">
+          		<p class="i-B16 blueD">RESPONDER DENÚNCIA</p>
+          		</a>
+          	</div>																																																																																												
+          	<div th:if="${session.usuarioLogado}" class="denuncias-delete">
+          		<a th:if="${session.usuarioLogado.isAdm}" th:href="@{/removerDenunciaAdm(id_denuncia=${denuncia.id_denuncia})}">
+          		<p class="red i-B16 like">EXCLUIR</p>
+          		</a>
+          	</div>
+          </div>
+        </div>
+      	<div class="resposta" th:if="${denuncia.resposta != null}">
+      		<h2 class="black1 i-B20">Resposta à denuncia:</h2>
+        </div>
+        <div class="resposta">
+        	<p class="i-R18 black2" th:text="${denuncia.resposta}"></p>
+        </div>
+      </div>
+    </div>
+    <nav class="filtro-bg">
+      <p class="i-M18 white">Filtrar</p>
+      <div>
+      <form action="" method="POST">
+        <label class="i-SM18 white" for="categoria">Por categoria</label>
+        <select name="filtracateg" id="categoria">
+            <option value="" disabled>Selecione</option>
+            <option 
+            th:each="categ : ${categorias}"
+            th:text="${categ.nome}"
+            th:value="${categ.id}">Saneamento</option>
+          </select>
+          <input class="filtrar" type="submit" value="Filtrar">
+      </form>
+      </div>
+      <div class="filtrar-espaco">
+      <form action="" method="POST">
+        <label class="i-SM18 white" for="bairro">Por bairro</label>
+        <input class="filtra-bairro" type="text" name="bairro" id="bairro" placeholder="Nome do Bairro">
+      	<input class="filtrar" type="submit" value="Filtrar">
+      </form>
+      </div>
+      <div class="filtrar-espaco">
+      <form action="" method="POST">
+        <label class="i-SM18 white" for="status">Por status</label>
+        <select name="status" id="status">
+          <option value="FALSE">EM ANDAMENTO</option>
+          <option value="TRUE">CONCLUIDO</option>
+        </select>
+      	<input class="filtrar" type="submit" value="Filtrar">
+      </form>
+      </div>
+    </nav>
+  </section>
+  <div class="contato contato-bg">
+    <div class="contato-modal">
+      <div class="close">
+        <p class="i-M18 black1">
+          Para dúvidas, sugestões e reclamações entre em contato com uma das
+          opções abaixo.
+        </p>
+        <img src="./img/Close.svg" alt="botão de fechar" />
+      </div>
+      <div class="conteudo">
+        <div>
+          <span class="i-SM18 black1">E-mail</span>
+          <p class="i-R18 white">suporte@app.com</p>
+        </div>
+        <div>
+          <span class="i-SM18 black1">Telefone</span>
+          <p class="i-R18 white">(81) 91111-2222</p>
+        </div>
+        <div>
+          <span class="i-SM18 black1">Whatsapp</span>
+          <p class="i-R18 white">(81) 91111-2222</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="./js/script.js"></script>
+</body>
+
+</html>

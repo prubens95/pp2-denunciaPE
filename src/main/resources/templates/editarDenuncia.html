@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Editar Denúncia</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Rubik:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+
+<body>
+  <header class="header-bg">
+    <a href="./">
+      <h2 class="white i-B42">DenunciaPE</h2>
+    </a>
+    <nav class="header-menu">
+      <ul>
+      	<li>
+      	  <a th:if="${session.usuarioLogado}" th:href="@{/editarPerfil(id_usuario=${session.usuarioLogado.id_usuario})}">
+      	  <img src="./img/Person.svg" alt="decoração" />
+          <p th:if="${session.usuarioLogado}" th:text="${session.usuarioLogado.nome}" class="white r-R20"></p>
+          </a>
+        </li>
+        <li>
+          <a class="white r-R20" href="./denunciar"><img src="./img/Information-circle.svg" alt="decoração" />Registrar Denúncias</a>
+        </li>
+        <li>
+          <a class="white r-R20" href="./denuncias"><img src="./img/Flag.svg" alt="decoração" />Visualizar
+            Denúncias</a>
+        </li>
+        <li th:if="${session.usuarioLogado}">
+        	<a th:if="${session.usuarioLogado.isAdm}" href="./listaUsuario"><img src="./img/Person.svg" alt="decoração" />
+        	<p class="white r-R20">Listar Usuários</p></a>
+        </li>
+       <li>
+          <a th:if="${session.usuarioLogado}" class="white r-R20" href="./minhasDenuncias"><img src="./img/Flag.svg" alt="decoração" />Minhas Denúncias</a>
+        </li>
+        <li>
+          <a class="white r-R20" href="/acom"><img src="./img/Calendar.svg" alt="decoração" />Acompanhamento</a>
+        </li>
+		<li>
+          <a th:if="${session.usuarioLogado == null}" class="white r-R20" href="./usuario"><img src="./img/Person.svg" alt="decoração" />Login e Cadastro</a>
+		</li>
+
+        <li>
+          <a class="white r-R20" id="contato" href="/"><img src="./img/Email.svg" alt="decoração" />Contato</a>
+        </li>
+        <li>
+        	<form th:action="@{/logout}" method="POST">
+        	<button class="logout" th:if="${session.usuarioLogado}">Sair</button>
+        	</form>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <section class="margin registrar-denuncia">
+  		<div class="cancelar-denuncia">
+        	<a href="./minhasDenuncias">
+        	<p class="red i-B16 like">CANCELAR ALTERAÇÕES</p></a>
+        </div>
+    <h1 class="i-B42 black1">Editar Denúncia</h1>
+    <div th:if="${denuncia.protocolo != null}">
+        <p class="i-M18 black1">
+          Denúncia registrada sobre o protocolo de Nº: <b th:text="${denuncia.protocolo}"></b>
+        </p><br>
+        <br>
+    </div>
+    <form th:action="@{/salvarDenunciaEdit}" method="POST" th:object="${denuncia}" enctype="multipart/form-data">
+      <div class="container-form">
+        <div>
+        	<input type= "hidden" th:field="*{id_denuncia}" name="id_denun">
+        	<input type="hidden" th:field="*{usuario}" name="id_user">
+        	<input type="hidden" th:field="*{protocolo}" name="protocolo">
+          <label for="assunto" class="i-B16 black2">ASSUNTO</label>
+          <input type="text" id="assunto" required th:field="*{assunto}" placeholder="Digite o assunto" />
+          <label for="cep" class="i-B16 black2">CEP</label>
+          <input type="text" required id="cep" th:field="*{endereco.cep}" placeholder="Digite o CEP" />
+          <span class="erro i-B20 red">Cep inválido</span>
+          <label for="bairro" class="i-B16 black2">BAIRRO</label>
+          <input type="text" required id="bairro" th:field="*{endereco.bairro}" placeholder="Digite o bairro" />
+          <label for="rua" class="i-B16 black2">RUA</label>
+          <input type="text" required id="rua" th:field="*{endereco.rua}" placeholder="Digite a rua" />
+          <label for="pontoReferencia" class="i-B16 black2">PONTO DE REFERÊNCIA</label>
+          <input type="text" id="pontoReferencia" th:field="*{ponto_ref}" placeholder="Digite o ponto de referencia" /><br><br>
+          <div th:if="${session.usuarioLogado}">
+          <label th:if="${session.usuarioLogado.isAdm}" for="resposta" class="i-B16 black2">RESPOSTA</label>
+          <textarea th:if="${session.usuarioLogado.isAdm}" th:field="*{resposta}" id="resposta" placeholder="Responder a denúncia" required></textarea>
+          </div>
+          
+        </div>
+        <div>
+          <label for="categoria" class="i-B16 black2">CATEGORIA</label>
+          <select th:field="*{categoria}" id="categoria" required>
+            <option value="" disabled>Selecione</option>
+            <option 
+            th:each="categ : ${categorias}"
+            th:text="${categ.nome}"
+            th:value="${categ.id}">Saneamento</option>
+          </select>
+          <label for="descricao" class="i-B16 black2">DESCRIÇÃO</label>
+          <textarea th:field="*{descricao}" id="descricao" placeholder="Descreva a sua denúncia" required></textarea><br><br>
+          <div th:if="${session.usuarioLogado}">
+          <label th:if="${session.usuarioLogado.isAdm}" for="status" class="i-B16 black2">STATUS</label>
+          	<select th:if="${session.usuarioLogado.isAdm}" th:field="*{status}" id="status">
+          	<option value="FALSE">EM ANDAMENTO</option>
+          	<option value="TRUE">CONCLUÍDO</option>
+          </select>
+          </div>
+        </div>
+      </div>
+      <div>
+        <label class="i-SM20 black1" for="anexos">Envie uma foto da denúncia (A foto enviada substituirá a atual)</label><br><br>
+  		<input type="file" id="anexos" accept="image/*" name="ImgDenuncia"><br><br>
+      </div>
+      <div class="arquivo">
+          <input class="i-R20 white" type="submit" value="SALVAR DENÚNCIA" />
+        </div>
+      </div>
+    </form>
+  </section>
+
+  <div class="contato contato-bg">
+    <div class="contato-modal">
+      <div class="close">
+        <p class="i-M18 black1">
+          Para dúvidas, sugestões e reclamações entre em contato com uma das
+          opções abaixo.
+        </p>
+        <img src="./img/Close.svg" alt="botão de fechar" />
+      </div>
+      <div class="conteudo">
+        <div>
+          <span class="i-SM18 black1">E-mail</span>
+          <p class="i-R18 white">suporte@app.com</p>
+        </div>
+        <div>
+          <span class="i-SM18 black1">Telefone</span>
+          <p class="i-R18 white">(81) 91111-2222</p>
+        </div>
+        <div>
+          <span class="i-SM18 black1">Whatsapp</span>
+          <p class="i-R18 white">(81) 91111-2222</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="./js/script.js"></script>
+</body>
+
+</html>

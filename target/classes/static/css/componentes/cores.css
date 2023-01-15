@@ -1,0 +1,47 @@
+:root {
+  --blueD: #43a2bb;
+  --blueC: #6bb8cc;
+  --red: #da3128;
+  --green: #00b181;
+  --black1: #1c1c1c;
+  --black2: #303030;
+  --gray: #b3b3b3;
+  --white: #fff;
+  --yellow: #ffce30;
+}
+
+.blueD {
+  color: var(--blueD);
+}
+
+.blueC {
+  color: var(--blueC);
+}
+
+.red {
+  color: var(--red);
+}
+
+.green {
+  color: var(--green);
+}
+
+.black1 {
+  color: var(--black1);
+}
+
+.black2 {
+  color: var(--black2);
+}
+
+.gray {
+  color: var(--gray);
+}
+
+.white {
+  color: var(--white);
+}
+
+.yellow {
+  color: var(--yellow);
+}
