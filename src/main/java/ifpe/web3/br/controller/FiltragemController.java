@@ -7,7 +7,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import ifpe.web3.br.model.CategoriaDAO;
 import ifpe.web3.br.model.Categorias;
@@ -43,15 +46,31 @@ public class FiltragemController {
 		
 	}
 	
-	@PostMapping("/filtrar")
-	public String filtrar(Integer id, Model model,
-			Denuncia denuncia, Categorias categoria) {
-		model.addAttribute("categoria", categoria);
-		model.addAttribute("denuncias", denunciaDAO.filtrarCategoria(id));
-		model.addAttribute("categorias", categoriaDAO.findAll());
-		return "redirect:/denuncias";
+	@GetMapping("/denuncias/{categoria}")
+	@ResponseBody
+	public List<Denuncia> filtrar(@PathVariable Integer categoria) {
 		
+		return denunciaDAO.findByCategoria(categoria);
+	
 	}
+	
+	@GetMapping("/filtrarCategoria")
+	public String filtrarCategoria(@RequestParam Integer categoria, Denuncia denuncia, Model model) {
+		denuncia = (Denuncia) this.filtrar(categoria);
+		model.addAttribute("denuncia", denuncia);
+		model.addAttribute("categoria", categoria);
+		model.addAttribute("denuncias", this.denunciaDAO.filtrarCategoria(categoria));
+		return "visualizar";
+	
+	}
+	
+	@GetMapping("/denuncias/{status}")
+	public List<Denuncia> filtrarStatus(@PathVariable boolean status) {
+		
+		return denunciaDAO.existsByStatus(status);
+	}
+		
+	
 	
 	
 }
