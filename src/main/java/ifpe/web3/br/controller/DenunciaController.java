@@ -150,5 +150,13 @@ public class DenunciaController {
 		model.addAttribute("categorias", categoriaDAO.findAll());
 		return "/editarDenuncia";
 	}
+	
+	@GetMapping("/editarDenunciaAdm")
+	public String editarDenunciaAdm(Integer id_denuncia, Model model, Categorias categoria) {
+		Denuncia denuncia = denunciaDAO.findById(id_denuncia).orElse(null);
+		model.addAttribute("denuncia", denuncia);
+		model.addAttribute("categorias", categoriaDAO.findAll());
+		return "/editarDenuncia";
+	}
 
 }

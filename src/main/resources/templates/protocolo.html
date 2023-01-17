@@ -74,6 +74,16 @@
             <p class="i-R18 black1" th:text="${denuncia.descricao}"></p>
           </div>
           <div class="denuncias-status">
+        	<div class="denuncias-bairro">
+        		<b>Bairro:</b>
+      			<p class="bairro" th:text="${denuncia.endereco.bairro}"></p>
+      		</div>
+      		<div class="denuncias-bairro">
+      			<b>Rua:</b>
+      			<p class="bairro" th:text="${denuncia.endereco.rua}"></p>
+      		</div>
+      	</div>
+          <div class="denuncias-status">
           	<div th:if="${denuncia.status == true}" class="denuncias-status-true">
           		<p th:if="${denuncia.status == true}" class="i-B16 green">STATUS: CONCLUÍDO</p>
           	</div>
@@ -81,31 +91,22 @@
           		<p th:if="${denuncia.status == false}" class="i-B16 yellow">STATUS: EM ANDAMENTO</p>
           	</div>
           	<div th:if="${session.usuarioLogado}">
-          		<a class="denuncias-edit" th:if="${session.usuarioLogado.isAdm}" th:href="@{/editarDenuncia(id_denuncia=${denuncia.id_denuncia})}">
-          		<p class="i-B16 blueD">RESPONDER DENÚNCIA</p>
+          		<a th:if="${denuncia.status == false}" class="denuncias-edit" th:href="@{/editarDenuncia(id_denuncia=${denuncia.id_denuncia})}">
+          		<p class="i-B16 blueD">EDITAR DENÚNCIA</p>
           		</a>
           	</div>																																																																																												
           	<div th:if="${session.usuarioLogado}" class="denuncias-delete">
-          		<a th:if="${session.usuarioLogado.isAdm}" th:href="@{/removerDenunciaAdm(id_denuncia=${denuncia.id_denuncia})}">
+          		<a th:href="@{/removerDenuncia(id_denuncia=${denuncia.id_denuncia})}">
           		<p class="red i-B16 like">EXCLUIR</p>
           		</a>
           	</div>
           </div>
         </div>
-        <div class="denuncias-bairro">
-        	<div class="denuncias-bairro2">
-        		<b>Bairro:</b>
-      			<p class="bairro" th:text="${denuncia.endereco.bairro}"></p>
-      		</div>
-      		<div class="denuncias-bairro2">
-      			<b>Rua:</b>
-      			<p class="bairro" th:text="${denuncia.endereco.rua}"></p>
-      		</div>
-      	</div>
-      	<div>
-      		<p class="i-R18 black2"><b>Resposta:</b></p>
-      		<p class="i-R18 black2" th:text="${denuncia.resposta}"></p>
-      	
+      	<div class="resposta" th:if="${denuncia.resposta != null}">
+      		<h2 class="black1 i-B20">Resposta à denuncia:</h2>
+        </div>
+        <div class="resposta">
+        	<p class="i-R18 black2" th:text="${denuncia.resposta}"></p>
         </div>
       </div>
     </div>

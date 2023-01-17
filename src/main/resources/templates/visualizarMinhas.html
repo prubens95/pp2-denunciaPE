@@ -93,7 +93,7 @@
           		<p th:if="${denuncia.status == false}" class="i-B16 yellow">STATUS: EM ANDAMENTO</p>
           	</div>
           	<div th:if="${session.usuarioLogado}">
-          		<a class="denuncias-edit" th:href="@{/editarDenuncia(id_denuncia=${denuncia.id_denuncia})}">
+          		<a th:if="${denuncia.status == false}" class="denuncias-edit" th:href="@{/editarDenuncia(id_denuncia=${denuncia.id_denuncia})}">
           		<p class="i-B16 blueD">EDITAR DENÚNCIA</p>
           		</a>
           	</div>																																																																																												
