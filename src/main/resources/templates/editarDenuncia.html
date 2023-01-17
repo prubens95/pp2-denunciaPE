@@ -57,7 +57,7 @@
       </ul>
     </nav>
   </header>
-  <section class="margin registrar-denuncia">
+  <section class="margin registrar-denuncia" th:if="${session.usuarioLogado}">
   		<div class="cancelar-denuncia">
         	<a href="./minhasDenuncias">
         	<p class="red i-B16 like">CANCELAR ALTERAÇÕES</p></a>

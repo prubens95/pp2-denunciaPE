@@ -57,7 +57,7 @@
     </nav>
   </header>
 
-  <section class="margin denuncias">
+  <section class="margin denuncias" th:if="${session.usuarioLogado}">
 	<div class="denuncias-conteudo">
     <h2 class="i-B42 black1">Minhas Denúncias</h2><br><br>
       <div class="denuncias" th:each="denuncia : ${denuncias}">
@@ -112,6 +112,7 @@
         </div>
       </div>
     </div>
+    <!--
     <nav class="filtro-bg">
       <p class="i-M18 white">Filtrar</p>
       <div>
@@ -145,6 +146,7 @@
       </form>
       </div>
     </nav>
+     -->
   </section>
   <div class="contato contato-bg">
     <div class="contato-modal">
